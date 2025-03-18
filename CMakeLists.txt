@@ -16,7 +16,8 @@ target_sources(${PROJECT_NAME}-demo PRIVATE
 )
 target_link_libraries(${PROJECT_NAME}-demo ${PROJECT_NAME})
 
-if (UNITTEST)
+find_library(cmoka_lib NAMES cmocka)
+if (UNITTEST AND NOT "${cmocka_lib}" STREQUAL "cmocka_lib-NOTFOUND")
     include(CTest)
     add_subdirectory(${CMAKE_CURRENT_LIST_DIR}/test)
 endif()
